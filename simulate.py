@@ -7,8 +7,8 @@ pb.setGravity(0,0,-9.81)
 pb.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 planeId = pb.loadURDF("plane.urdf")
-pb.loadSDF("box.sdf")
-for i in range(300):
+pb.loadSDF("tower.sdf")
+for i in range(600):
   time.sleep(1/30)
   print(i)
   pb.stepSimulation()
