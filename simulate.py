@@ -1,8 +1,14 @@
 import pybullet as pb
+import pybullet_data
 import time
 
 physicsClient = pb.connect(pb.GUI)
-for i in range(1000):
+pb.setGravity(0,0,-9.81)
+pb.setAdditionalSearchPath(pybullet_data.getDataPath())
+
+planeId = pb.loadURDF("plane.urdf")
+pb.loadSDF("box.sdf")
+for i in range(300):
   time.sleep(1/30)
   print(i)
   pb.stepSimulation()
