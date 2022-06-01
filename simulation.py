@@ -18,10 +18,9 @@ class SIMULATION:
         self.planeId = pb.loadURDF("plane.urdf")
         self.robotId = pb.loadURDF("body.urdf")
         pb.loadSDF("world.sdf")
-        #print('ahahahaahhhaaha')
         ps.Prepare_To_Simulate(self.robotId)
         self.robot.Prepare_To_Sense()
-        #pb.stepSimulation()
+        self.robot.Prepare_To_Act()
 
     def __del__(self):
         for i in self.robot.sensors:
@@ -32,10 +31,5 @@ class SIMULATION:
         for i in range(c.n):
             time.sleep(1/30)
             self.robot.Sense(i)
+            self.robot.Act(self.robotId, i)
             pb.stepSimulation()
-            #back_targetAngles[i] = amplitude_b * np.sin(frequency_b*i + phaseOffset_b)
-            #front_targetAngles[i] = amplitude_f * np.sin(frequency_f*i + phaseOffset_f)
-            #ps.Set_Motor_For_Joint(bodyIndex = self.robotId, jointName = "Torso_BackLeg", controlMode = pb.POSITION_CONTROL, 
-            #                       targetPosition = 0, maxForce = 70)
-            #ps.Set_Motor_For_Joint(bodyIndex = self.robotId, jointName = "Torso_FrontLeg", controlMode = pb.POSITION_CONTROL, 
-            #                       targetPosition = 0, maxForce = 70)
