@@ -23,13 +23,14 @@ class SIMULATION:
         self.robot.Prepare_To_Act()
 
     def __del__(self):
-        for i in self.robot.sensors:
-            print(self.robot.sensors[i].values)
+        #for i in self.robot.sensors:
+        #    print(self.robot.sensors[i].values)
         pb.disconnect()
 
     def Run(self):
         for i in range(c.n):
             time.sleep(1/30)
             self.robot.Sense(i)
+            self.robot.Think()
             self.robot.Act(self.robotId, i)
             pb.stepSimulation()

@@ -5,7 +5,7 @@ def Create_World():
     ps.Send_Cube(name="Box", pos=[-2,2,0.5], size=[length,width,height])
     ps.End()
 
-def Create_Robot():
+def Generate_Body():
     ps.Start_URDF("body.urdf")
     ps.Send_Cube(name="Torso", pos=[1.5,0,1.5], size=[length,width,height])
     ps.Send_Joint(name = "Torso_BackLeg", parent= "Torso", child = "BackLeg", type = "revolute", position = [1,0,1])
@@ -17,9 +17,19 @@ def Create_Robot():
 
     ps.End()
 
+def Generate_Brain():
+    ps.Start_NeuralNetwork("brain.nndf")
+    ps.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
+    ps.Send_Sensor_Neuron(name = 1 , linkName = "BackLeg")
+    ps.Send_Sensor_Neuron(name = 2 , linkName = "FrontLeg")
+    ps.Send_Motor_Neuron(name = 3 , jointName = "Torso_BackLeg")
+    ps.Send_Motor_Neuron(name = 4 , jointName = "Torso_FrontLeg")
+    ps.End()
+
 length = 1
 width = 1
 height = 1
 
 Create_World()
-Create_Robot()
+Generate_Body()
+Generate_Brain()
