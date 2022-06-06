@@ -14,7 +14,7 @@ class ROBOT:
         for jointName in ps.jointNamesToIndices:
             self.motors[jointName] = MOTOR(jointName)
 
-    def Act(self, robotId, t):
+    def Act(self, robotId):
         for neuronName in self.nn.Get_Neuron_Names():
             if self.nn.Is_Motor_Neuron(neuronName):
                 jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)

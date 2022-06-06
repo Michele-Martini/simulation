@@ -24,6 +24,8 @@ def Generate_Brain():
     ps.Send_Sensor_Neuron(name = 2 , linkName = "FrontLeg")
     ps.Send_Motor_Neuron(name = 3 , jointName = "Torso_BackLeg")
     ps.Send_Motor_Neuron(name = 4 , jointName = "Torso_FrontLeg")
+    ps.Send_Synapse(sourceNeuronName = 0, targetNeuronName = 3, weight = 1.0)
+    ps.Send_Synapse(sourceNeuronName = 1, targetNeuronName = 3, weight = 1.0)
     ps.End()
 
 length = 1

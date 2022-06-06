@@ -32,5 +32,5 @@ class SIMULATION:
             time.sleep(1/30)
             self.robot.Sense(i)
             self.robot.Think()
-            self.robot.Act(self.robotId, i)
+            self.robot.Act(self.robotId)
             pb.stepSimulation()
