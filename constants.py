@@ -1,6 +1,11 @@
 import numpy as np
 
-n = 400
+n = 500
+numberOfGenerations = 30
+
+length = 1
+width = 1
+height = 1
 
 T_b = 100
 amplitude_b = np.pi/4
