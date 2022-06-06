@@ -7,37 +7,46 @@ from constants import length, width, height
 
 class SOLUTION:
     def __init__(self):
+        # The solution is defined as the set of synapses's weights that maps the sensors' inputs to a control law for the motors
+
         self.weights = 2 * np.random.rand(3, 2) - 1
 
+
     def Evaluate(self, mode):
+        # World, body, and brain are created at every fitness evaluation
+
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
-        os.system("python simulate.py " + mode)  
+        os.system("python simulate.py " + str(mode))  
         with open("fitness.txt", "r") as f:
             self.fitness = float(f.read())
 
+
     def Mutate(self):
+        # One random synapse is mutated to a random value [-1,+1]
+
         randomRow = random.randint(0, 2)
         randomColumn = random.randint(0, 1)
         self.weights[randomRow,randomColumn] = 2*random.random() - 1
 
+
     def Create_World(self):
+
         ps.Start_SDF("world.sdf")
         ps.Send_Cube(name="Box", pos=[-2,2,0.5], size=[length,width,height])
         ps.End()
 
+
     def Create_Body(self):
         ps.Start_URDF("body.urdf")
         ps.Send_Cube(name="Torso", pos=[1.5,0,1.5], size=[length,width,height])
-
         ps.Send_Joint(name = "Torso_BackLeg", parent= "Torso", child = "BackLeg", type = "revolute", position = [1,0,1])
         ps.Send_Cube(name="BackLeg", pos=[-0.5,0,-0.5], size=[length,width,height])
-   
         ps.Send_Joint(name = "Torso_FrontLeg", parent= "Torso", child = "FrontLeg", type = "revolute", position = [2,0,1])
         ps.Send_Cube(name="FrontLeg", pos=[0.5,0,-0.5], size=[length,width,height])
-
         ps.End()
+
 
     def Create_Brain(self):
         ps.Start_NeuralNetwork("brain.nndf")

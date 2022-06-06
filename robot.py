@@ -1,12 +1,13 @@
-from sensor import SENSOR
-from motor import MOTOR
 import pyrosim.pyrosim as ps
 import pybullet as pb
+from sensor import SENSOR
+from motor import MOTOR
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 
 class ROBOT:
     def __init__(self):
+        # A robot is made of sensors, motors, and a neural network (i.e., its brain)
         self.sensors = {}
         self.motors = {}
         self.nn = NEURAL_NETWORK("brain.nndf")
@@ -32,10 +33,9 @@ class ROBOT:
 
     def Think(self):
         self.nn.Update()
-        #self.nn.Print()
 
     def Get_Fitness(self, robotId, linkName):
-        stateOfLinkZero = pb.getLinkState(robotId, 0)
+        stateOfLinkZero = pb.getLinkState(robotId, linkName)
         positionOfLinkZero = stateOfLinkZero[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
         with open("fitness.txt", "w") as f:

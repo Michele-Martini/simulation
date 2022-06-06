@@ -1,6 +1,6 @@
 from world import WORLD
 from robot import ROBOT
-import constants as c
+from constants import n
 import pybullet as pb
 import pyrosim.pyrosim as ps
 import pybullet_data
@@ -31,7 +31,7 @@ class SIMULATION:
         pb.disconnect()
 
     def Run(self):
-        for i in range(c.n):
+        for i in range(n):
             if self.directOrGUI == "GUI":
                 time.sleep(1/30)
             self.robot.Sense(i)
