@@ -1,5 +1,6 @@
 import pyrosim.pyrosim as ps
 import random
+from constants import length, width, height
 
 def Create_World():
     ps.Start_SDF("world.sdf")
@@ -31,10 +32,6 @@ def Generate_Brain():
             ps.Send_Synapse(sourceNeuronName = i, targetNeuronName = j, weight = random.uniform(-1.0, 1.0))
 
     ps.End()
-
-length = 1
-width = 1
-height = 1
 
 Create_World()
 Generate_Body()

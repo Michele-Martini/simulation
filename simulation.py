@@ -33,7 +33,7 @@ class SIMULATION:
     def Run(self):
         for i in range(n):
             if self.directOrGUI == "GUI":
-                time.sleep(1/30)
+                time.sleep(0.001)
             self.robot.Sense(i)
             self.robot.Think()
             self.robot.Act(self.robotId)

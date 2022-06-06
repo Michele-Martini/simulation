@@ -8,6 +8,7 @@ from pyrosim.neuralNetwork import NEURAL_NETWORK
 class ROBOT:
     def __init__(self):
         # A robot is made of sensors, motors, and a neural network (i.e., its brain)
+
         self.sensors = {}
         self.motors = {}
         self.nn = NEURAL_NETWORK("brain.nndf")
