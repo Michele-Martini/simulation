@@ -11,7 +11,11 @@ class ROBOT:
     def Prepare_To_Act(self):
         for jointName in ps.jointNamesToIndices:
             self.motors[jointName] = MOTOR(jointName)
-            self.motors[jointName].Prepare_To_Act()
+            if jointName == 'Torso_FrontLeg':
+                scaling_factor = 2
+            else:
+                scaling_factor = 1
+            self.motors[jointName].Prepare_To_Act(scaling_factor)
 
     def Act(self, robotId, t):
         for i in self.motors:
