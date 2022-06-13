@@ -1,6 +1,6 @@
 import numpy as np
 
-n = 400
+n = 300
 
 T_b = 100
 amplitude_b = np.pi/4

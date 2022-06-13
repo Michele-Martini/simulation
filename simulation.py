@@ -29,7 +29,7 @@ class SIMULATION:
 
     def Run(self):
         for i in range(c.n):
-            time.sleep(1/30)
+            time.sleep(1/60)
             self.robot.Sense(i)
             self.robot.Think()
             self.robot.Act(self.robotId)
